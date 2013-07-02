@@ -29,7 +29,7 @@ Squash::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile =true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -42,9 +42,9 @@ Squash::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
-  require "rack/ssl"
-  config.middleware.insert_before ::Rack::SSL, Ping
+  config.force_ssl = false
+  require "rack/cache"
+  config.middleware.insert_after ::Rack::Cache, Ping
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
